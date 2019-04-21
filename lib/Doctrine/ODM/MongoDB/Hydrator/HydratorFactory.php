@@ -159,6 +159,7 @@ class HydratorFactory
             }
         }
         $this->hydrators[$className] = new $fqn($this->dm, $this->unitOfWork, $class);
+
         return $this->hydrators[$className];
     }
 

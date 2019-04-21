@@ -90,6 +90,7 @@ class ClassMetadataFactoryTestSubject extends ClassMetadataFactory
         if (! isset($this->_mockMetadata[$className])) {
             throw new InvalidArgumentException(sprintf('No mock metadata found for class %s.', $className));
         }
+
         return $this->_mockMetadata[$className];
     }
 

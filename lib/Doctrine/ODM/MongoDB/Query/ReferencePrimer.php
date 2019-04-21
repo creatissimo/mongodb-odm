@@ -94,7 +94,6 @@ class ReferencePrimer
         };
     }
 
-
     /**
      * Prime references within a mapped field of one or more documents.
      *

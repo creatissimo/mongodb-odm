@@ -135,6 +135,7 @@ class SchemaManager
     public function getDocumentIndexes(string $documentName) : array
     {
         $visited = [];
+
         return $this->doGetDocumentIndexes($documentName, $visited);
     }
 
@@ -498,7 +499,7 @@ class SchemaManager
         /* Avoid a strict equality check here. The numeric type returned by
          * MongoDB may differ from the document index without implying that the
          * indexes themselves are inequivalent. */
-        // phpcs:disable SlevomatCodingStandard.ControlStructures.DisallowEqualOperators.DisallowedEqualOperator
+        // phpcs:disable SlevomatCodingStandard.Operators.DisallowEqualOperators.DisallowedEqualOperator
         return $mongoIndexKeys == $documentIndexKeys;
     }
 
@@ -530,7 +531,7 @@ class SchemaManager
         /* Avoid a strict equality check here. The numeric type returned by
          * MongoDB may differ from the document index without implying that the
          * indexes themselves are inequivalent. */
-        // phpcs:disable SlevomatCodingStandard.ControlStructures.DisallowEqualOperators.DisallowedEqualOperator
+        // phpcs:disable SlevomatCodingStandard.Operators.DisallowEqualOperators.DisallowedEqualOperator
         return $mongoIndexWeights == $documentIndexWeights;
     }
 
@@ -677,6 +678,7 @@ class SchemaManager
         }
 
         $stats = $database->command(['collstats' => $class->getCollection()])->toArray()[0];
+
         return (bool) ($stats['sharded'] ?? false);
     }
 

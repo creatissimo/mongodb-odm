@@ -148,6 +148,7 @@ class ClassMetadataFactory extends AbstractClassMetadataFactory
     protected function isEntity(ClassMetadataInterface $class) : bool
     {
         assert($class instanceof ClassMetadata);
+
         return ! $class->isMappedSuperclass && ! $class->isEmbeddedDocument && ! $class->isQueryResultDocument;
     }
 
@@ -335,7 +336,6 @@ class ClassMetadataFactory extends AbstractClassMetadataFactory
             $subClass->reflFields[$name] = $field;
         }
     }
-
 
     /**
      * Adds inherited association mappings to the subclass mapping.

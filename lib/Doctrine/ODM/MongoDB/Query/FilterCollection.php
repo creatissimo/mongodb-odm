@@ -122,6 +122,7 @@ class FilterCollection
         if (! $this->isEnabled($name)) {
             throw new InvalidArgumentException("Filter '" . $name . "' is not enabled.");
         }
+
         return $this->enabledFilters[$name];
     }
 

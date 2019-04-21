@@ -24,6 +24,7 @@ class DocumentPersisterMock extends DocumentPersister
         $this->inserts[]          = $document;
         $id                       = $this->identityColumnValueCounter++;
         $this->postInsertIds[$id] = [$id, $document];
+
         return $id;
     }
 

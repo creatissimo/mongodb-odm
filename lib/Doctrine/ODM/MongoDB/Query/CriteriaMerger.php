@@ -45,10 +45,8 @@ class CriteriaMerger
         switch (count($nonEmptyCriterias)) {
             case 0:
                 return [];
-
             case 1:
                 return $nonEmptyCriterias[0];
-
             default:
                 return ['$and' => $nonEmptyCriterias];
         }

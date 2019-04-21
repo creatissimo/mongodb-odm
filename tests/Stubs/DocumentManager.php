@@ -35,6 +35,7 @@ class DocumentManager extends BaseDocumentManager
         if (! isset($this->classMetadatas[$className])) {
             throw new InvalidArgumentException('Metadata for class ' . $className . ' doesn\'t exist, try calling ->setClassMetadata() first');
         }
+
         return $this->classMetadatas[$className];
     }
 }

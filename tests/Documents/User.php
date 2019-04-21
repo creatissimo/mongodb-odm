@@ -256,9 +256,11 @@ class User extends BaseDocument
         foreach ($this->groups as $key => $group) {
             if ($group->getName() === $name) {
                 unset($this->groups[$key]);
+
                 return true;
             }
         }
+
         return false;
     }
 
@@ -355,9 +357,11 @@ class User extends BaseDocument
         foreach ($this->posts as $key => $post) {
             if ($post->getId() === $id) {
                 unset($this->posts[$key]);
+
                 return true;
             }
         }
+
         return false;
     }
 

@@ -21,6 +21,7 @@ class MODM166Test extends BaseTest
         $this->listener = new MODM166EventListener();
         $evm            = $this->dm->getEventManager();
         $evm->addEventListener(Events::onFlush, $this->listener);
+
         return $this->dm;
     }
 

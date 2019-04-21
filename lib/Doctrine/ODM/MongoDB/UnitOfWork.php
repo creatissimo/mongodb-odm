@@ -290,6 +290,7 @@ class UnitOfWork implements PropertyChangedListener
         if (! $this->persistenceBuilder) {
             $this->persistenceBuilder = new PersistenceBuilder($this->dm, $this);
         }
+
         return $this->persistenceBuilder;
     }
 
@@ -329,6 +330,7 @@ class UnitOfWork implements PropertyChangedListener
             $pb                              = $this->getPersistenceBuilder();
             $this->persisters[$documentName] = new Persisters\DocumentPersister($pb, $this->dm, $this, $this->hydratorFactory, $class);
         }
+
         return $this->persisters[$documentName];
     }
 
@@ -341,6 +343,7 @@ class UnitOfWork implements PropertyChangedListener
             $pb                        = $this->getPersistenceBuilder();
             $this->collectionPersister = new Persisters\CollectionPersister($this->dm, $pb, $this);
         }
+
         return $this->collectionPersister;
     }
 
@@ -476,6 +479,7 @@ class UnitOfWork implements PropertyChangedListener
                 $divided[$class->name][1][$oid] = $d;
             }
         }
+
         return $divided;
     }
 
@@ -570,6 +574,7 @@ class UnitOfWork implements PropertyChangedListener
                 $actualData[$name] = $value;
             }
         }
+
         return $actualData;
     }
 
@@ -1273,6 +1278,7 @@ class UnitOfWork implements PropertyChangedListener
     public function isScheduledForSynchronization(object $document) : bool
     {
         $class = $this->dm->getClassMetadata(get_class($document));
+
         return isset($this->scheduledForSynchronization[$class->name][spl_object_hash($document)]);
     }
 
@@ -1290,6 +1296,7 @@ class UnitOfWork implements PropertyChangedListener
                 $this->removeFromIdentityMap($document);
             }
             unset($this->documentInsertions[$oid]);
+
             return; // document has not been persisted yet, so nothing more to do.
         }
 
@@ -1327,6 +1334,7 @@ class UnitOfWork implements PropertyChangedListener
     public function isDocumentScheduled(object $document) : bool
     {
         $oid = spl_object_hash($document);
+
         return isset($this->documentInsertions[$oid]) ||
             isset($this->documentUpserts[$oid]) ||
             isset($this->documentUpdates[$oid]) ||
@@ -1443,6 +1451,7 @@ class UnitOfWork implements PropertyChangedListener
         if (isset($this->identityMap[$class->name][$id])) {
             unset($this->identityMap[$class->name][$id]);
             $this->documentStates[$oid] = self::STATE_DETACHED;
+
             return true;
         }
 
@@ -2015,6 +2024,7 @@ class UnitOfWork implements PropertyChangedListener
             }
         }
     }
+
     /**
      * Cascades a merge operation to associated documents.
      */
@@ -2265,8 +2275,10 @@ class UnitOfWork implements PropertyChangedListener
                 // @todo following line should be superfluous once collections are stored in change sets
                 $this->setOriginalDocumentProperty(spl_object_hash($document), $propName, $newValue);
             }
+
             return $newValue;
         }
+
         return $coll;
     }
 
@@ -2547,6 +2559,7 @@ class UnitOfWork implements PropertyChangedListener
         if (! empty($hints[Query::HINT_READ_ONLY])) {
             $document = $class->newInstance();
             $this->hydratorFactory->hydrate($document, $data, $hints);
+
             return $document;
         }
 
@@ -2692,6 +2705,7 @@ class UnitOfWork implements PropertyChangedListener
         foreach ($this->identityMap as $documentSet) {
             $count += count($documentSet);
         }
+
         return $count;
     }
 

@@ -30,6 +30,7 @@ class OnClearEventArgs extends BaseOnClearEventArgs
     {
         $dm = $this->getObjectManager();
         assert($dm instanceof DocumentManager);
+
         return $dm;
     }
 

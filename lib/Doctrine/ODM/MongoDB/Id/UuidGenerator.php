@@ -82,6 +82,7 @@ class UuidGenerator extends AbstractIdGenerator
     public function generate(DocumentManager $dm, object $document)
     {
         $uuid = $this->generateV4();
+
         return $this->generateV5($uuid, $this->salt ?: php_uname('n'));
     }
 

@@ -707,7 +707,6 @@ class UnitOfWorkTest extends BaseTest
         $this->assertAttributeSame(0, 'commitsInProgress', $this->dm->getUnitOfWork());
     }
 
-
     protected function getDocumentManager()
     {
         return new \Stubs\DocumentManager();
@@ -757,6 +756,7 @@ class UnitOfWorkTest extends BaseTest
     {
         $classMetadata                          = new ClassMetadata($class);
         $classMetadata->{'is' . ucfirst($flag)} = true;
+
         return $classMetadata;
     }
 }

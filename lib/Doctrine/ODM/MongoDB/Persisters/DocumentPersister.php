@@ -331,6 +331,7 @@ class DocumentPersister
 
         try {
             $this->collection->updateOne($criteria, $data, $options);
+
             return;
         } catch (WriteException $e) {
             if (empty($retry) || strpos($e->getMessage(), 'Mod on _id not allowed') === false) {
@@ -397,7 +398,9 @@ class DocumentPersister
 
             if (($this->class->isVersioned || $this->class->isLockable) && $result->getModifiedCount() !== 1) {
                 throw LockException::lockFailed($document);
-            } elseif ($this->class->isVersioned) {
+            }
+
+            if ($this->class->isVersioned) {
                 $this->class->reflFields[$this->class->versionField]->setValue($document, $nextVersion);
             }
         }
@@ -518,6 +521,7 @@ class DocumentPersister
         }
 
         $baseCursor = $this->collection->find($criteria, $options);
+
         return $this->wrapCursor($baseCursor);
     }
 
@@ -573,6 +577,7 @@ class DocumentPersister
     public function exists(object $document) : bool
     {
         $id = $this->class->getIdentifierObject($document);
+
         return (bool) $this->collection->findOne(['_id' => $id], ['_id']);
     }
 
@@ -868,7 +873,6 @@ class DocumentPersister
         switch (strtolower((string) $sort)) {
             case 'desc':
                 return -1;
-
             case 'asc':
                 return 1;
         }
@@ -1359,6 +1363,7 @@ class DocumentPersister
         $id = $this->class->getDatabaseIdentifierValue($id);
 
         $shardKeyQueryPart = $this->getShardKeyQuery($document);
+
         return array_merge(['_id' => $id], $shardKeyQueryPart);
     }
 
