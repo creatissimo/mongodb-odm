@@ -1,7 +1,7 @@
 {
-    "name": "doctrine/mongodb-odm",
+    "name": "creatissimo/mongodb-odm",
     "type": "library",
-    "description": "Doctrine MongoDB Object Document Mapper",
+    "description": "Doctrine MongoDB Object Document Mapper (Fork)",
     "keywords": ["odm", "database", "persistence", "mongodb"],
     "homepage": "http://www.doctrine-project.org",
     "license": "MIT",
