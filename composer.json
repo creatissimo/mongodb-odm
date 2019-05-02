@@ -1,5 +1,8 @@
 {
     "name": "creatissimo/mongodb-odm",
+    "replace": {
+        "doctrine/mongodb-odm": "self.version"
+    },
     "type": "library",
     "description": "Doctrine MongoDB Object Document Mapper (Fork)",
     "keywords": ["odm", "database", "persistence", "mongodb"],
