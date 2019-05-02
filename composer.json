@@ -1,5 +1,8 @@
 {
     "name": "creatissimo/mongodb-odm",
+    "replace": {
+        "doctrine/mongodb-odm": "self.version"
+    },
     "type": "library",
     "description": "PHP Doctrine MongoDB Object Document Mapper (ODM) provides transparent persistence for PHP objects to MongoDB.",
     "keywords": [
